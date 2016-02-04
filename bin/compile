@@ -23,6 +23,18 @@ export_env_dir() {
 
 export_env_dir $3
 
+# Make sure that certain environment variables are set or certain things fail
+if [ -z "$ROOT_URL" ]; then
+    echo "       ROOT_URL must be set or the meteor build step fails"
+    # TODO: Can this be worked out?
+    exit 1
+fi
+
+if [ -z "$MONGO_URL" ]; then
+    echo "       MONGO_URL must be set or meteor will not start"
+    exit 1
+fi
+
 # Get the path to dir one above this file.
 BUILDPACK_DIR=$(cd -P -- "$(dirname -- "$0")" && cd .. && pwd -P)
 # Get the directory our app is checked out in (the "BUILD_DIR"), passed by Heroku
