@@ -92,6 +92,10 @@ echo "-----> Building Meteor with ROOT_URL: $ROOT_URL"
 HOME=$METEOR_DIR $METEOR build --server $ROOT_URL --directory $BUNDLE_DEST
 echo "STEDDY CHANGE $BUNDLE_DEST"
 ls -al $BUNDLE_DEST
+(
+	cd $BUNDLE_DEST; \
+	tar -xf build.tar.gz;
+)
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
 rmdir $BUNDLE_DEST
 
