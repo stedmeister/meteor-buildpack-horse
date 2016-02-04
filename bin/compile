@@ -94,7 +94,8 @@ echo "STEDDY CHANGE $BUNDLE_DEST"
 ls -al $BUNDLE_DEST
 (
 	cd $BUNDLE_DEST; \
-	tar -xf build.tar.gz;
+	tar -xf build.tar.gz; \
+	rm build.tar.gz;
 )
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
 rmdir $BUNDLE_DEST
