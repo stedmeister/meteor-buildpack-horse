@@ -82,14 +82,14 @@ export CPPPATH="$CPATH"
 #
 # Install meteor
 #
+METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 echo "-----> Installing meteor"
-if [ -e "$METEOR_DIR" ]; then
+if [ -e "$METEOR" ]; then
     echo "       Using cached version";
 else
     echo "       Not found in cache";
     curl -sS https://install.meteor.com | HOME="$METEOR_DIR" /bin/sh
 fi
-METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 
 #
 # Build the meteor app!
