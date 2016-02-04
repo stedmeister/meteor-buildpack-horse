@@ -87,6 +87,11 @@ cd $APP_SOURCE_DIR
 # recurse, trying to bundle up its own bundling.
 BUNDLE_DEST=`mktemp -d "$BUILDPACK_DIR/build-XXXX"`
 
+# We don't want the mobile platforms so, let's not build them
+echo "-----> Removing mobile platforms"
+HOME=$METEOR_DIR $METEOR remove-platform ios || true
+HOME=$METEOR_DIR $METEOR remove-platform android || true
+
 # <hack issue="https://github.com/meteor/meteor/issues/2796>
 # the root cause seems to be related to https://github.com/meteor/meteor/issues/2606
 # Also remember to use 'heroku stack:set cedar-14' to allow certain recompiled
@@ -94,7 +99,6 @@ BUNDLE_DEST=`mktemp -d "$BUILDPACK_DIR/build-XXXX"`
 # of glibc (contained in cedar-14)
 if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then
 echo "-----> Pre-launching Meteor to create packages assets and prevent bundling from failing"
-    HOME=$METEOR_DIR $METEOR remove-platform ios android
     HOME=$METEOR_DIR timeout -s9 60 $METEOR --settings settings.json || true
 fi
 # </hack>
