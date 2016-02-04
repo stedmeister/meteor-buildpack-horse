@@ -23,6 +23,8 @@ export_env_dir() {
 
 export_env_dir $3
 
+echo `export`
+
 # Make sure that certain environment variables are set or certain things fail
 if [ -z "$ROOT_URL" ]; then
     echo "       ROOT_URL must be set or the meteor build step fails"
