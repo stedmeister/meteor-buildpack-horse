@@ -104,7 +104,7 @@ BUNDLE_DEST=`mktemp -d "$BUILDPACK_DIR/build-XXXX"`
 # We don't want the mobile platforms so, let's not build them
 echo "-----> Removing mobile platforms"
 #HOME=$METEOR_DIR $METEOR remove-platform ios || true
-HOME=$METEOR_DIR $METEOR remove-platform android || true
+#HOME=$METEOR_DIR $METEOR remove-platform android || true
 
 # <hack issue="https://github.com/meteor/meteor/issues/2796>
 # the root cause seems to be related to https://github.com/meteor/meteor/issues/2606
